@@ -1,13 +1,16 @@
+from tqdm import tqdm
+from time import sleep
 def mean_peoples_grades(peoples: list, course: str):
     sum_mean = 0
     len_mean = 0
-    for people in peoples:
+    for people in tqdm(peoples, ncols=80, ascii=True, desc='Total'):
         sum_mean += sum(people.grades[course])
         len_mean += len(people.grades[course])
     if isinstance(people, Student):
-        print(f'Общая средняя оценка студентов: {sum_mean / len_mean:.1f}')
+        tqdm.write(f'Общая средняя оценка студентов: {sum_mean / len_mean:.1f}')
     else:
-        print(f'Общая средняя оценка лекторов: {sum_mean / len_mean:.1f}')
+        tqdm.write(f'Общая средняя оценка лекторов: {sum_mean / len_mean:.1f}')
+    sleep(3)
 
 def mean(self):
     if len(self.grades.values()) == 0:
